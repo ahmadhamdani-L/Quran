@@ -17,5 +17,6 @@ func juzRoutes(superRoute *gin.RouterGroup) {
 
 		juzRouter.DELETE("/juzDelete/:juz", controller.JuzDelete)
 
+		juzRouter.GET("/juzOne/:id", controller.FindByIdJuz)
 	}
 }

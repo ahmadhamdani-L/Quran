@@ -77,3 +77,17 @@ func JuzDelete(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"data": "berhasil di hapus"})
 }
+
+
+
+func FindByIdJuz(c *gin.Context) { // Get model if exist
+	var juz models.Juz
+
+	db := c.MustGet("db").(*gorm.DB)
+	if err := db.Where("id = ?", c.Param("id")).First(&juz).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Juz Not Found!"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"data": juz})
+}
